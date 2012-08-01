@@ -60,7 +60,7 @@ end
 
 ## Update the model controller action methods with what you want to display
 def show
-	@model_instance = ModelClass.find(params[:id])
+	@model_instance = ModelClass.find_by_id(params[:id])
 end
 
 # Now you can access the values of that instance variable @model_instance and display it in the view show.html.erb
