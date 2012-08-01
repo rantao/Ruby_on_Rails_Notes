@@ -26,3 +26,42 @@ $bundle exec rake db:migrate 			#created the table name_of_model_class_plural
 $rails s 								#runs the rails server. go to localhost:3000 to check it out
 ## URIs are created including the 7 actions for the class: index, show, new, edit etc...
 << http://localhost:3000/modelclass/new for example >>
+
+$rails console							# open up rails console to add some sample data to the db
+## add some new entries in the console
+>> n = ModelClass.new 
+>> n.field1 = "something" 
+>> n.field2 = "else"
+
+## Add a new controller: models_controller.rb
+class ModelsController < ApplicationController
+	#add methods to define each action for the controller
+	def new
+	end
+	def index
+	end
+	def show
+	end
+	def edit
+	end
+	.
+	.
+	.
+end
+
+## Add the routes in order to tell what to do for each routes
+ProjectName.Application.routes.draw do
+	resouces :model_class  				# this will add the default routes for the 7 actions built in
+end
+
+## Add a new view for your model class at views/modelname/action_name.html.erb
+<new.html.erb>
+<h1>What ever you want to go here just basic html stuff</h1>
+
+## Update the model controller action methods with what you want to display
+def show
+	@model_instance = ModelClass.find(params[:id])
+end
+
+# Now you can access the values of that instance variable @model_instance and display it in the view show.html.erb
+<h1>Field1 is: <%= @model_instance.field1 => </h2>
